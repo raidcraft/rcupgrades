@@ -1,9 +1,11 @@
 package de.raidcraft.rcupgrades.api.upgrade;
 
+import org.bukkit.configuration.ConfigurationSection;
+
 /**
  * @author Philip Urban
  */
-public interface Upgrade {
+public interface Upgrade extends ConfigurationSection {
 
     public int getAvailableLevels();
 

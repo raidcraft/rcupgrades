@@ -11,7 +11,7 @@ public class SQLHolder extends AbstractHolder {
 
     public SQLHolder(int id, ConfigurationSection config) {
 
-        // TODO load holder from database, set saved upgrades an levels. Create new if saved holder couldn't found.
+        // TODO load holder from database, set saved upgrades, upgrade data and levels. Create new if saved holder couldn't found.
         super(config);
     }
 

@@ -1,9 +1,7 @@
 package de.raidcraft.rcupgrades.tables;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * @author Philip Urban
@@ -18,6 +16,9 @@ public class TUpgrade {
     private int level;
     @ManyToOne
     private THolder holderId;
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "upgrade_id")
+    private Set<TUpgradeData> data;
 
     public int getId() {
 
@@ -57,5 +58,15 @@ public class TUpgrade {
     public void setHolderId(THolder holderId) {
 
         this.holderId = holderId;
+    }
+
+    public Set<TUpgradeData> getData() {
+
+        return data;
+    }
+
+    public void setData(Set<TUpgradeData> data) {
+
+        this.data = data;
     }
 }

@@ -7,10 +7,11 @@ upgrades:
   1:
     # name of the registered upgrade implementation
     name: SOME_UPGRADE
+    # max level
+    max-level: 4
     # individual upgrade config values
     config:
       foo: true
       bar: 'Hello World'
-    # available levels
-    levels:
+
 
