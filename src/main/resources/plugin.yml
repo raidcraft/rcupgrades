@@ -1,5 +1,5 @@
 main: de.raidcraft.rcupgrades.RCUpgradesPlugin
-name: RCMultiWorld
+name: RCUpgrades
 version: ${project.version}#${BUILDS_ALL_TIME}
 description: Provides multiworld support.
 author: Strasse36
