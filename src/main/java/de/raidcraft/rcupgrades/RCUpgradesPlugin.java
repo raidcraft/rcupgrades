@@ -1,26 +1,49 @@
 package de.raidcraft.rcupgrades;
 
 import de.raidcraft.api.BasePlugin;
+import de.raidcraft.rcupgrades.holder.HolderManager;
+import de.raidcraft.rcupgrades.tables.THolder;
+import de.raidcraft.rcupgrades.tables.TUpgrade;
+import de.raidcraft.rcupgrades.upgrade.UpgradeManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Philip Urban
  */
 public class RCUpgradesPlugin extends BasePlugin {
 
-    private UpgradeObjectManager upgradeObjectManager;
+    private HolderManager holderManager;
+    private UpgradeManager upgradeManager;
 
     @Override
     public void enable() {
 
-        upgradeObjectManager = new UpgradeObjectManager(this);
+        holderManager = new HolderManager(this);
+        upgradeManager = new UpgradeManager(this);
     }
 
     @Override
     public void disable() {
     }
 
-    public UpgradeObjectManager getUpgradeObjectManager() {
+    @Override
+    public List<Class<?>> getDatabaseClasses() {
 
-        return upgradeObjectManager;
+        List<Class<?>> databases = new ArrayList<>();
+        databases.add(THolder.class);
+        databases.add(TUpgrade.class);
+        return databases;
+    }
+
+    public HolderManager getHolderManager() {
+
+        return holderManager;
+    }
+
+    public UpgradeManager getUpgradeManager() {
+
+        return upgradeManager;
     }
 }

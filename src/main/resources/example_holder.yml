@@ -1,0 +1,16 @@
+# example holder configuration
+name: Example Holder
+description: Thid holder is an example for configure upgrade holders
+
+# all available holder upgrades
+upgrades:
+  1:
+    # name of the registered upgrade implementation
+    name: SOME_UPGRADE
+    # individual upgrade config values
+    config:
+      foo: true
+      bar: 'Hello World'
+    # available levels
+    levels:
+
