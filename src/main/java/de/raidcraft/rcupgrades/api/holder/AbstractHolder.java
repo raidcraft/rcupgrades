@@ -41,6 +41,10 @@ public abstract class AbstractHolder implements Holder {
                 RaidCraft.LOGGER.warning(e.getMessage());
                 continue;
             }
+            // set friendly name
+            upgrade.setFriendlyName(upgradeSection.getString("friendly-name"));
+            // set description
+            upgrade.setDescription(upgradeSection.getString("description"));
             // set max level
             upgrade.setMaxLevel(upgradeSection.getInt("max-level"));
             // set custom config values

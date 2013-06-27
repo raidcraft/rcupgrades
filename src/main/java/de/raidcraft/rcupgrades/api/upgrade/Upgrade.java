@@ -9,6 +9,14 @@ public interface Upgrade extends ConfigurationSection {
 
     public String getName();
 
+    public String getFriendlyName();
+
+    public void setFriendlyName(String friendlyName);
+
+    public String getDescription();
+
+    public void setDescription(String description);
+
     public void setMaxLevel(int maxLevel);
 
     public int getMaxLevel();

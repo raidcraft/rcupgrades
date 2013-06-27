@@ -9,6 +9,8 @@ import org.bukkit.configuration.MemoryConfiguration;
 public abstract class AbstractUpgrade extends MemoryConfiguration implements Upgrade {
 
     private String name;
+    private String friendlyName;
+    private String description;
     private int maxLevel;
 
     public AbstractUpgrade() {
@@ -19,6 +21,26 @@ public abstract class AbstractUpgrade extends MemoryConfiguration implements Upg
     public String getName() {
 
         return name;
+    }
+
+    public String getFriendlyName() {
+
+        return friendlyName;
+    }
+
+    public void setFriendlyName(String friendlyName) {
+
+        this.friendlyName = friendlyName;
+    }
+
+    public String getDescription() {
+
+        return description;
+    }
+
+    public void setDescription(String description) {
+
+        this.description = description;
     }
 
     public void setMaxLevel(int maxLevel) {
