@@ -76,4 +76,9 @@ public abstract class AbstractHolder implements Holder {
 
         return name;
     }
+
+    public String getDescription() {
+
+        return description;
+    }
 }

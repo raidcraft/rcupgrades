@@ -26,4 +26,8 @@ public abstract class AbstractUpgrade extends MemoryConfiguration implements Upg
         this.maxLevel = maxLevel;
     }
 
+    public int getMaxLevel() {
+
+        return maxLevel;
+    }
 }

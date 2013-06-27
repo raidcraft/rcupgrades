@@ -11,6 +11,8 @@ public interface Upgrade extends ConfigurationSection {
 
     public void setMaxLevel(int maxLevel);
 
+    public int getMaxLevel();
+
     public int getAvailableLevels();
 
     public int getCurrentLevel();
