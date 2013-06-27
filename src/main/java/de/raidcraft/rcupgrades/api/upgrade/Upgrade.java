@@ -7,6 +7,10 @@ import org.bukkit.configuration.ConfigurationSection;
  */
 public interface Upgrade extends ConfigurationSection {
 
+    public String getName();
+
+    public void setMaxLevel(int maxLevel);
+
     public int getAvailableLevels();
 
     public int getCurrentLevel();

@@ -13,5 +13,11 @@ public interface Holder {
 
     public String getName();
 
+    public String getDescription();
+
+    public Upgrade getUpgrade(String name);
+
     public List<Upgrade> getUpgrades();
+
+    public void save();
 }
