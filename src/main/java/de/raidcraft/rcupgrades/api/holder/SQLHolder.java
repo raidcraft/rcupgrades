@@ -55,7 +55,7 @@ public class SQLHolder extends AbstractHolder {
 
         THolder tHolder = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(THolder.class, id);
         for(Upgrade upgrade : getUpgrades()) {
-            // get existing upgrade
+            // get existing upgrades
             TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class)
                     .where().eq("holder_id", id).eq("name", upgrade.getName()).findUnique();
             // create new if not exists
@@ -69,7 +69,7 @@ public class SQLHolder extends AbstractHolder {
             tUpgrade.setLevel(upgrade.getCurrentLevel());
             RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgrade);
 
-            // save upgrade data
+            // save upgrades data
             for(String key : upgrade.getKeys(false)) {
                 // get existing data
                 TUpgradeData tUpgradeData = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgradeData.class)

@@ -3,7 +3,7 @@ package de.raidcraft.rcupgrades;
 import de.raidcraft.api.BasePlugin;
 import de.raidcraft.rcupgrades.tables.THolder;
 import de.raidcraft.rcupgrades.tables.TUpgrade;
-import de.raidcraft.rcupgrades.upgrade.UpgradeManager;
+import de.raidcraft.rcupgrades.upgrades.UpgradeManager;
 
 import java.util.ArrayList;
 import java.util.List;

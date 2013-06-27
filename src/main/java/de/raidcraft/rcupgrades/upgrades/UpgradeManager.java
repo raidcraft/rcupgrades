@@ -1,4 +1,4 @@
-package de.raidcraft.rcupgrades.upgrade;
+package de.raidcraft.rcupgrades.upgrades;
 
 import de.raidcraft.rcupgrades.RCUpgradesPlugin;
 import de.raidcraft.rcupgrades.api.upgrade.Upgrade;

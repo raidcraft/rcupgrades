@@ -5,11 +5,11 @@ description: Thid holder is an example for configure upgrade holders
 # all available holder upgrades
 upgrades:
   1:
-    # name of the registered upgrade implementation
+    # name of the registered upgrades implementation
     name: SOME_UPGRADE
     # max level
     max-level: 4
-    # individual upgrade config values
+    # individual upgrades config values
     config:
       foo: true
       bar: 'Hello World'
