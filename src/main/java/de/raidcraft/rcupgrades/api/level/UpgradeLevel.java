@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface Level<T> {
+public interface UpgradeLevel<T> {
 
     public int getNumber();
 
@@ -15,5 +15,11 @@ public interface Level<T> {
 
     public List<String> getRequirementDescription();
 
-    public UnlockResult unlock(T object);
+    public List<String> getRewardDescription();
+
+    public boolean isUnlocked();
+
+    public void setUnlocked(boolean unlocked);
+
+    public UnlockResult tryToUnlock(T object);
 }

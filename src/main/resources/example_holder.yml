@@ -1,5 +1,4 @@
 # example holder configuration
-name: 'City upgrades'
 description: 'This holder contains all possible city upgrades (example)'
 
 # all available holder upgrades
@@ -17,6 +16,9 @@ upgrades:
           - 'Errichte ein Gildenhaus'
           - '10000EXP'
           - '1 Silber 30 Kupfer'
+        reward-desc:
+          - '4 Plots'
+          - 'Gildenmeister NPC'
         requirements:
           A:
             type: CITY_EXP

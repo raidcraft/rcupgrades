@@ -1,6 +1,6 @@
 package de.raidcraft.rcupgrades.api.upgrade;
 
-import de.raidcraft.rcupgrades.api.level.Level;
+import de.raidcraft.rcupgrades.api.level.UpgradeLevel;
 
 import java.util.List;
 
@@ -13,9 +13,9 @@ public interface Upgrade<T> {
 
     public String getDescription();
 
-    public Level<T> getHighestLockedLevel();
+    public UpgradeLevel<T> getHighestLockedLevel();
 
-    public Level<T> getLevel(int level);
+    public UpgradeLevel<T> getLevel(int level);
 
-    public List<Level<T>> getLevels();
+    public List<UpgradeLevel<T>> getLevels();
 }

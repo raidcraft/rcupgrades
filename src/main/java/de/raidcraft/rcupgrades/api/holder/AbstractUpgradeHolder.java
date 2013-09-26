@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * @author Philip Urban
  */
-public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder {
+public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
 
     protected int id;
     protected String name;
