@@ -68,7 +68,7 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
         if(isMeetingAllRequirements(object)) {
             // reward
             for(Reward reward : rewards) {
-                reward.run(getObject());
+                reward.reward(getObject());
             }
         }
         return unlockResult;

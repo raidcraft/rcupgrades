@@ -12,9 +12,12 @@ import java.util.List;
  */
 public class RCUpgradesPlugin extends BasePlugin {
 
+    private UpgradeManager upgradeManager;
+
     @Override
     public void enable() {
 
+        upgradeManager = new UpgradeManager();
     }
 
     @Override
@@ -28,5 +31,10 @@ public class RCUpgradesPlugin extends BasePlugin {
         databases.add(TUpgrade.class);
         databases.add(TUpgradeLevel.class);
         return databases;
+    }
+
+    public UpgradeManager getUpgradeManager() {
+
+        return upgradeManager;
     }
 }
