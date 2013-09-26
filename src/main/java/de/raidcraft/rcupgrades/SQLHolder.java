@@ -1,7 +1,7 @@
-package de.raidcraft.rcupgrades.api.holder;
+package de.raidcraft.rcupgrades;
 
 import de.raidcraft.RaidCraft;
-import de.raidcraft.rcupgrades.RCUpgradesPlugin;
+import de.raidcraft.rcupgrades.api.holder.AbstractHolder;
 import de.raidcraft.rcupgrades.api.upgrade.Upgrade;
 import de.raidcraft.rcupgrades.tables.THolder;
 import de.raidcraft.rcupgrades.tables.TUpgrade;

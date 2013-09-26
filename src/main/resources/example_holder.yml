@@ -1,14 +1,42 @@
 # example holder configuration
-name: Example Holder
-description: Thid holder is an example for configure upgrade holders
+name: 'City upgrades'
+description: 'This holder contains all possible city upgrades (example)'
 
 # all available holder upgrades
 upgrades:
   1:
-    # name of the registered upgrades implementation
-    name: SOME_UPGRADE
-    # max level
-    max-level: 4
+    # name of upgrade set
+    name: 'Haupt-Upgrades'
+    level:
+      1:
+        name: 'Eigenes Gildenhaus'
+        requirement-desc:
+          - 'Errichte ein Gildenhaus'
+          - '10000EXP'
+          - '1 Silber 30 Kupfer'
+        requirements:
+          A:
+            type: CITY_EXP
+            args:
+              exp: 10000
+          B:
+            type: CITY_MONEY
+            args:
+              amount: 1S30K
+          C:
+            type: CITY_STAFF_UNLOCK
+            args:
+              info: 'Die Stadt muss ein Gildenhaus errichten in dem der Gildenmeister aufgestellt wird.|Der Baustil muss dem vorgestellten Konzept entsprechen.'
+        actions:
+          A:
+            type: CITY_PLOTS
+            args:
+              amount: 4
+          B:
+            type: SET_CITY_FLAG
+            args:
+              flag: INVITE
+              value: allow
     # individual upgrades config values
     config:
       foo: true
