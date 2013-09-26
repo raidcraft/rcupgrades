@@ -1,6 +1,8 @@
 package de.raidcraft.rcupgrades;
 
 import de.raidcraft.api.BasePlugin;
+import de.raidcraft.rcupgrades.tables.TUpgrade;
+import de.raidcraft.rcupgrades.tables.TUpgradeLevel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +25,8 @@ public class RCUpgradesPlugin extends BasePlugin {
     public List<Class<?>> getDatabaseClasses() {
 
         List<Class<?>> databases = new ArrayList<>();
+        databases.add(TUpgrade.class);
+        databases.add(TUpgradeLevel.class);
         return databases;
     }
 }

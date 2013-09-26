@@ -5,11 +5,13 @@ package de.raidcraft.rcupgrades.api.upgrade;
  */
 public abstract class AbstractUpgrade<T> implements Upgrade<T> {
 
+    private String id;
     private String name;
     private String description;
 
-    protected AbstractUpgrade(String name, String description) {
+    protected AbstractUpgrade(String id, String name, String description) {
 
+        this.id = id;
         this.name = name;
         this.description = description;
     }
@@ -24,5 +26,11 @@ public abstract class AbstractUpgrade<T> implements Upgrade<T> {
     public String getDescription() {
 
         return description;
+    }
+
+    @Override
+    public String getId() {
+
+        return id;
     }
 }

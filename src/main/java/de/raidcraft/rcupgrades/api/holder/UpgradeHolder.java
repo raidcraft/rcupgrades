@@ -15,9 +15,11 @@ public interface UpgradeHolder<T> {
 
     public String getDescription();
 
-    public Upgrade<T> getUpgrade(String name);
+    public T getTargetObject();
 
-    public List<Upgrade<T>> getUpgrades();
+    public Upgrade getUpgrade(String name);
+
+    public List<Upgrade> getUpgrades();
 
     public void save();
 }

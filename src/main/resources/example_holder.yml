@@ -3,7 +3,7 @@ description: 'This holder contains all possible city upgrades (example)'
 
 # all available holder upgrades
 upgrades:
-  1:
+  1: # this identifier is stored as reference in database!!!
     # name of upgrade set
     name: 'Haupt-Upgrades'
     # description

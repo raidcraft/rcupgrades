@@ -15,7 +15,8 @@ public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
     protected int id;
     protected String name;
     protected String description;
-    protected Map<String, Upgrade<T>> upgrades = new CaseInsensitiveMap<>();
+    private T targetObject;
+    protected Map<String, Upgrade> upgrades = new CaseInsensitiveMap<>();
 
     @Override
     public int getId() {
@@ -36,13 +37,18 @@ public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
     }
 
     @Override
-    public Upgrade<T> getUpgrade(String name) {
+    public T getTargetObject() {
+        return targetObject;
+    }
+
+    @Override
+    public Upgrade getUpgrade(String name) {
 
         return upgrades.get(name);
     }
 
     @Override
-    public List<Upgrade<T>> getUpgrades() {
+    public List<Upgrade> getUpgrades() {
 
         if(upgrades.values() == null || upgrades.values().size() == 0) {
             return new ArrayList<>();

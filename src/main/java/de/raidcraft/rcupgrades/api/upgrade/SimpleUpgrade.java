@@ -7,23 +7,23 @@ import java.util.*;
 /**
  * @author Philip Urban
  */
-public class SimpleUpgrade<T> extends AbstractUpgrade<T> {
+public class SimpleUpgrade extends AbstractUpgrade {
 
-    private SortedMap<Integer, UpgradeLevel<T>> levels = new TreeMap<>();
+    private SortedMap<Integer, UpgradeLevel> levels = new TreeMap<>();
 
-    public SimpleUpgrade(String name, String description, List<UpgradeLevel<T>> levels) {
+    public SimpleUpgrade(String id, String name, String description, List<UpgradeLevel> levels) {
 
-        super(name, description);
-        for(UpgradeLevel<T> upgradeLevel : levels) {
+        super(id, name, description);
+        for(UpgradeLevel upgradeLevel : levels) {
             this.levels.put(upgradeLevel.getNumber(), upgradeLevel);
         }
     }
 
     @Override
-    public UpgradeLevel<T> getHighestLockedLevel() {
+    public UpgradeLevel getHighestLockedLevel() {
 
-        UpgradeLevel<T> upgradeLevel = null;
-        for(Map.Entry<Integer, UpgradeLevel<T>> entry : levels.entrySet()) {
+        UpgradeLevel upgradeLevel = null;
+        for(Map.Entry<Integer, UpgradeLevel> entry : levels.entrySet()) {
             if(!entry.getValue().isUnlocked() && (upgradeLevel == null || upgradeLevel.getNumber() < entry.getValue().getNumber())) {
                 upgradeLevel = entry.getValue();
             }
@@ -32,13 +32,13 @@ public class SimpleUpgrade<T> extends AbstractUpgrade<T> {
     }
 
     @Override
-    public UpgradeLevel<T> getLevel(int level) {
+    public UpgradeLevel getLevel(int level) {
 
         return levels.get(level);
     }
 
     @Override
-    public List<UpgradeLevel<T>> getLevels() {
+    public List<UpgradeLevel> getLevels() {
 
         if(levels.values() == null || levels.values().size() == 0) {
             return new ArrayList<>();

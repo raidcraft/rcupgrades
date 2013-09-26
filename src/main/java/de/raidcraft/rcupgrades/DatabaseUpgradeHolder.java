@@ -1,6 +1,12 @@
 package de.raidcraft.rcupgrades;
 
+import de.raidcraft.RaidCraft;
 import de.raidcraft.rcupgrades.api.holder.ConfigurationUpgradeHolder;
+import de.raidcraft.rcupgrades.api.level.UpgradeLevel;
+import de.raidcraft.rcupgrades.api.upgrade.Upgrade;
+import de.raidcraft.rcupgrades.tables.TUpgrade;
+import de.raidcraft.rcupgrades.tables.TUpgradeHolder;
+import de.raidcraft.rcupgrades.tables.TUpgradeLevel;
 import org.bukkit.configuration.ConfigurationSection;
 
 /**
@@ -24,20 +30,77 @@ public class DatabaseUpgradeHolder<T> extends ConfigurationUpgradeHolder<T> {
     public void save() {
 
         // save new
-        if(id == 0) {
+        if(getId() == 0) {
 
+            //save holder
+            TUpgradeHolder tUpgradeHolder = new TUpgradeHolder();
+            tUpgradeHolder.setName(getName());
+            RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgradeHolder);
+            id = tUpgradeHolder.getId();
         }
         // update
         else {
 
+            // get holder
+            TUpgradeHolder tUpgradeHolder = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgradeHolder.class, getId());
+
+            // save upgrades
+            for(Upgrade upgrade : getUpgrades()) {
+                TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class).where().ieq("name", upgrade.getId()).findUnique();
+
+                // save upgrade if not exist
+                if(tUpgrade == null) {
+                    tUpgrade = new TUpgrade();
+                    tUpgrade.setName(upgrade.getId());
+                    tUpgrade.setHolder(tUpgradeHolder);
+                    RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgrade);
+                }
+
+                // save levels
+                for(UpgradeLevel level : upgrade.getLevels()) {
+                    TUpgradeLevel tUpgradeLevel = RaidCraft.getDatabase(RCUpgradesPlugin.class)
+                            .find(TUpgradeLevel.class).where().eq("upgrade_id", upgrade.getId()).eq("number", level.getNumber()).findUnique();
+
+                    // save if not exist
+                    if(tUpgradeLevel == null) {
+                        tUpgradeLevel = new TUpgradeLevel();
+                        tUpgradeLevel.setNumber(level.getNumber());
+                        tUpgradeLevel.setUpgrade(tUpgrade);
+                        tUpgradeLevel.setUnlocked(level.isUnlocked());
+                        RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgrade);
+                    }
+                    // otherwise update
+                    else {
+                        tUpgradeLevel.setUnlocked(level.isUnlocked());
+                        RaidCraft.getDatabase(RCUpgradesPlugin.class).update(tUpgradeLevel);
+                    }
+                }
+            }
         }
-        //TODO: implement
     }
 
     private void load() {
 
         if(id == 0) return;
 
-        //TODO: implement
+        // get holder
+        TUpgradeHolder tUpgradeHolder = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgradeHolder.class, getId());
+
+        // load upgrades
+        for(Upgrade upgrade : getUpgrades()) {
+            TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class).where().ieq("name", upgrade.getId()).findUnique();
+
+            if(tUpgrade == null) continue;
+
+            // save levels
+            for(UpgradeLevel level : upgrade.getLevels()) {
+                TUpgradeLevel tUpgradeLevel = RaidCraft.getDatabase(RCUpgradesPlugin.class)
+                        .find(TUpgradeLevel.class).where().eq("upgrade_id", upgrade.getId()).eq("number", level.getNumber()).findUnique();
+
+                if(tUpgradeLevel == null) continue;
+
+                level.setUnlocked(tUpgradeLevel.isUnlocked());
+            }
+        }
     }
 }

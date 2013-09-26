@@ -1,0 +1,61 @@
+package de.raidcraft.rcupgrades.tables;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+/**
+ * @author Philip Urban
+ */
+@Entity
+@Table(name = "rcupgrades_levels")
+public class TUpgradeLevel {
+
+    @Id
+    private int id;
+    private int number;
+    private boolean unlocked;
+    @ManyToOne
+    private TUpgrade upgrade;
+
+    public int getId() {
+
+        return id;
+    }
+
+    public void setId(int id) {
+
+        this.id = id;
+    }
+
+    public int getNumber() {
+
+        return number;
+    }
+
+    public void setNumber(int number) {
+
+        this.number = number;
+    }
+
+    public boolean isUnlocked() {
+
+        return unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+
+        this.unlocked = unlocked;
+    }
+
+    public TUpgrade getUpgrade() {
+
+        return upgrade;
+    }
+
+    public void setUpgrade(TUpgrade upgrade) {
+
+        this.upgrade = upgrade;
+    }
+}

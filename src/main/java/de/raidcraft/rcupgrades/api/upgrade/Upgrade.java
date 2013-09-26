@@ -7,15 +7,17 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface Upgrade<T> {
+public interface Upgrade {
+
+    public String getId();
 
     public String getName();
 
     public String getDescription();
 
-    public UpgradeLevel<T> getHighestLockedLevel();
+    public UpgradeLevel getHighestLockedLevel();
 
-    public UpgradeLevel<T> getLevel(int level);
+    public UpgradeLevel getLevel(int level);
 
-    public List<UpgradeLevel<T>> getLevels();
+    public List<UpgradeLevel> getLevels();
 }
