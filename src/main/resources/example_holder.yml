@@ -7,6 +7,9 @@ upgrades:
   1:
     # name of upgrade set
     name: 'Haupt-Upgrades'
+    # description
+    description: 'Verleiht Städten alle wichtigen Komponenten'
+
     level:
       1:
         name: 'Eigenes Gildenhaus'
@@ -27,7 +30,7 @@ upgrades:
             type: CITY_STAFF_UNLOCK
             args:
               info: 'Die Stadt muss ein Gildenhaus errichten in dem der Gildenmeister aufgestellt wird.|Der Baustil muss dem vorgestellten Konzept entsprechen.'
-        actions:
+        rewards:
           A:
             type: CITY_PLOTS
             args:

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface Holder {
+public interface UpgradeHolder<T> {
 
     public int getId();
 
@@ -15,9 +15,9 @@ public interface Holder {
 
     public String getDescription();
 
-    public Upgrade getUpgrade(String name);
+    public Upgrade<T> getUpgrade(String name);
 
-    public List<Upgrade> getUpgrades();
+    public List<Upgrade<T>> getUpgrades();
 
     public void save();
 }

@@ -1,31 +1,21 @@
 package de.raidcraft.rcupgrades.api.upgrade;
 
-import org.bukkit.configuration.ConfigurationSection;
+import de.raidcraft.rcupgrades.api.level.Level;
+
+import java.util.List;
 
 /**
  * @author Philip Urban
  */
-public interface Upgrade extends ConfigurationSection {
+public interface Upgrade<T> {
 
     public String getName();
 
-    public String getFriendlyName();
-
-    public void setFriendlyName(String friendlyName);
-
     public String getDescription();
 
-    public void setDescription(String description);
+    public Level<T> getHighestLockedLevel();
 
-    public void setMaxLevel(int maxLevel);
+    public Level<T> getLevel(int level);
 
-    public int getMaxLevel();
-
-    public int getCurrentLevel();
-
-    public void increaseLevel();
-
-    public void decreaseLevel();
-
-    public void setLevel(int level);
+    public List<Level<T>> getLevels();
 }
