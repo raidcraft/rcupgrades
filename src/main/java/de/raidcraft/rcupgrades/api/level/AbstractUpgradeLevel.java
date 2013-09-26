@@ -12,9 +12,11 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     private boolean unlocked;
     private List<String> requirementDescription;
     private List<String> rewardDescription;
+    private T object;
 
-    protected AbstractUpgradeLevel(int number, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
+    protected AbstractUpgradeLevel(T object, int number, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
 
+        this.object = object;
         this.number = number;
         this.name = name;
         this.unlocked = unlocked;
@@ -56,5 +58,11 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     public void setUnlocked(boolean unlocked) {
 
         this.unlocked = unlocked;
+    }
+
+    @Override
+    public T getObject() {
+
+        return object;
     }
 }

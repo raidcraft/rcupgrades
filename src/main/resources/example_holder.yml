@@ -1,3 +1,5 @@
+# name of holder
+name: 'City Upgrade Holder'
 # example holder configuration
 description: 'This holder contains all possible city upgrades (example)'
 
@@ -20,17 +22,14 @@ upgrades:
           - '4 Plots'
           - 'Gildenmeister NPC'
         requirements:
-          A:
-            type: CITY_EXP
-            args:
+          CITY_EXP:
+            A:
               exp: 10000
-          B:
-            type: CITY_MONEY
-            args:
+          CITY_MONEY:
+            A:
               amount: 1S30K
-          C:
-            type: CITY_STAFF_UNLOCK
-            args:
+          CITY_STAFF_UNLOCK:
+            A:
               info: 'Die Stadt muss ein Gildenhaus errichten in dem der Gildenmeister aufgestellt wird.|Der Baustil muss dem vorgestellten Konzept entsprechen.'
         rewards:
           A:

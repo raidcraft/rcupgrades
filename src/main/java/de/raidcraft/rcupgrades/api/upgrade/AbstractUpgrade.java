@@ -3,7 +3,7 @@ package de.raidcraft.rcupgrades.api.upgrade;
 /**
  * @author Philip Urban
  */
-public abstract class AbstractUpgrade<T> implements Upgrade<T> {
+public abstract class AbstractUpgrade implements Upgrade {
 
     private String id;
     private String name;

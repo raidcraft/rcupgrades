@@ -12,9 +12,9 @@ public class UpgradeManager {
      * Load and returns existing UpgradeHolder.
      *
      */
-    public <O> UpgradeHolder<O> loadDatabaseUpgradeHolder(ConfigurationSection holderConfig, int id) {
+    public <O> UpgradeHolder<O> loadDatabaseUpgradeHolder(O object, ConfigurationSection holderConfig, int id) {
 
-        UpgradeHolder<O> upgradeHolder = new DatabaseUpgradeHolder<O>(holderConfig, id);
+        UpgradeHolder<O> upgradeHolder = new DatabaseUpgradeHolder<O>(object, holderConfig, id);
         return upgradeHolder;
     }
 
@@ -22,9 +22,9 @@ public class UpgradeManager {
      * Creates a new UpgradeHolder from given holder configuration and stores them in the database.
      *
      */
-    public <O> UpgradeHolder createDatabaseUpgradeHolder(ConfigurationSection holderConfig) {
+    public <O> UpgradeHolder createDatabaseUpgradeHolder(O object, ConfigurationSection holderConfig) {
 
-        UpgradeHolder<O> upgradeHolder = new DatabaseUpgradeHolder<O>(holderConfig);
+        UpgradeHolder<O> upgradeHolder = new DatabaseUpgradeHolder<O>(object, holderConfig);
         upgradeHolder.save();
         return upgradeHolder;
     }

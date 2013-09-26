@@ -18,6 +18,12 @@ public class UnlockResult {
         this.longReason = longReason;
     }
 
+    public void clearReasons() {
+
+        this.longReason = null;
+        this.shortReason = null;
+    }
+
     public void setSuccessful(boolean successful) {
 
         this.successful = successful;

@@ -17,6 +17,10 @@ public interface Upgrade {
 
     public UpgradeLevel getHighestLockedLevel();
 
+    public void setLevels(List<UpgradeLevel> levels);
+
+    public void addLevel(UpgradeLevel level);
+
     public UpgradeLevel getLevel(int level);
 
     public List<UpgradeLevel> getLevels();

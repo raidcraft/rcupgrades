@@ -1,6 +1,7 @@
 package de.raidcraft.rcupgrades.api.level;
 
 import de.raidcraft.api.requirement.Requirement;
+import de.raidcraft.api.reward.Reward;
 import de.raidcraft.rcupgrades.api.unlockresult.UnlockResult;
 
 import java.util.List;
@@ -11,17 +12,35 @@ import java.util.List;
 public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
 
     private List<Requirement<T>> requirements;
+    private List<Reward<T>> rewards;
+    private UnlockResult unlockResult;
 
-    public SimpleUpgradeLevel(int number, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription, List<Requirement<T>> requirements) {
+    public SimpleUpgradeLevel(T object, int number, String name, List<String> requirementDescription, List<String> rewardDescription) {
 
-        super(number, name, unlocked, requirementDescription, rewardDescription);
+        super(object, number, name, false, requirementDescription, rewardDescription);
+        this.unlockResult = new UnlockResult();
+    }
+
+    @Override
+    public void setRequirements(List<Requirement<T>> requirements) {
+
         this.requirements = requirements;
     }
 
     @Override
-    public UnlockResult tryToUnlock(T object) {
+    public void setRewards(List<Reward<T>> rewards) {
 
-        UnlockResult unlockResult = new UnlockResult();
+        this.rewards = rewards;
+    }
+
+    @Override
+    public List<Requirement<T>> getRequirements() {
+
+        return requirements;
+    }
+
+    @Override
+    public boolean isMeetingAllRequirements(T object) {
 
         for(Requirement<T> requirement : requirements) {
 
@@ -29,11 +48,29 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
                 unlockResult.setSuccessful(false);
                 unlockResult.setShortReason(requirement.getShortReason());
                 unlockResult.setLongReason(requirement.getLongReason());
-                return unlockResult;
+                return false;
             }
         }
-
         unlockResult.setSuccessful(true);
+        unlockResult.clearReasons();
+        return true;
+    }
+
+    @Override
+    public String getResolveReason(T object) {
+
+        return unlockResult.getLongReason();
+    }
+
+    @Override
+    public UnlockResult tryToUnlock(T object) {
+
+        if(isMeetingAllRequirements(object)) {
+            // reward
+            for(Reward reward : rewards) {
+                reward.run(getObject());
+            }
+        }
         return unlockResult;
     }
 }

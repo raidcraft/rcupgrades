@@ -14,14 +14,14 @@ import org.bukkit.configuration.ConfigurationSection;
  */
 public class DatabaseUpgradeHolder<T> extends ConfigurationUpgradeHolder<T> {
 
-    public DatabaseUpgradeHolder(ConfigurationSection config) {
+    public DatabaseUpgradeHolder(T object, ConfigurationSection config) {
 
-        super(config);
+        super(object, config);
     }
 
-    public DatabaseUpgradeHolder(ConfigurationSection config, int id) {
+    public DatabaseUpgradeHolder(T object, ConfigurationSection config, int id) {
 
-        super(config);
+        super(object, config);
         this.id = id;
         load();
     }

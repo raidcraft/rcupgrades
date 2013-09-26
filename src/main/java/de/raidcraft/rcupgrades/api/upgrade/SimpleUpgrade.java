@@ -11,12 +11,23 @@ public class SimpleUpgrade extends AbstractUpgrade {
 
     private SortedMap<Integer, UpgradeLevel> levels = new TreeMap<>();
 
-    public SimpleUpgrade(String id, String name, String description, List<UpgradeLevel> levels) {
+    public SimpleUpgrade(String id, String name, String description) {
 
         super(id, name, description);
+    }
+
+    @Override
+    public void setLevels(List<UpgradeLevel> levels) {
+
         for(UpgradeLevel upgradeLevel : levels) {
             this.levels.put(upgradeLevel.getNumber(), upgradeLevel);
         }
+    }
+
+    @Override
+    public void addLevel(UpgradeLevel level) {
+
+        this.levels.put(level.getNumber(), level);
     }
 
     @Override
