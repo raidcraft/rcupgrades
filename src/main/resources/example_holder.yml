@@ -42,9 +42,10 @@ upgrades:
             args:
               flag: INVITE
               value: allow
-    # individual upgrades config values
-    config:
-      foo: true
-      bar: 'Hello World'
+      2:
+        name: 'Zweites Stadtlevel'
+        .
+        .
+        .
 
 

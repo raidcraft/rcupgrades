@@ -44,6 +44,9 @@ public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
     @Override
     public List<Upgrade<T>> getUpgrades() {
 
+        if(upgrades.values() == null || upgrades.values().size() == 0) {
+            return new ArrayList<>();
+        }
         return new ArrayList<>(upgrades.values());
     }
 }
