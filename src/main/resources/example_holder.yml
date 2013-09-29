@@ -5,14 +5,14 @@ description: 'This holder contains all possible city upgrades (example)'
 
 # all available holder upgrades
 upgrades:
-  1: # this identifier is stored as reference in database!!!
+  '1': # this identifier is stored as reference in database!!!
     # name of upgrade set
     name: 'Haupt-Upgrades'
     # description
     description: 'Verleiht Städten alle wichtigen Komponenten'
 
     level:
-      1:
+      '1':
         name: 'Eigenes Gildenhaus'
         requirement-desc:
           - 'Errichte ein Gildenhaus'
@@ -41,10 +41,3 @@ upgrades:
             args:
               flag: INVITE
               value: allow
-      2:
-        name: 'Zweites Stadtlevel'
-        .
-        .
-        .
-
-
