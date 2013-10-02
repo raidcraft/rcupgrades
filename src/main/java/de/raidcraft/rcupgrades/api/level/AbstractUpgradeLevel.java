@@ -1,5 +1,7 @@
 package de.raidcraft.rcupgrades.api.level;
 
+import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
+
 import java.util.List;
 
 /**
@@ -7,21 +9,27 @@ import java.util.List;
  */
 public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
 
+    private UpgradeHolder<T> upgradeHolder;
     private int number;
     private String name;
     private boolean unlocked;
     private List<String> requirementDescription;
     private List<String> rewardDescription;
-    private T object;
 
-    protected AbstractUpgradeLevel(T object, int number, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
+    protected AbstractUpgradeLevel(UpgradeHolder<T> upgradeHolder, int number, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
 
-        this.object = object;
+        this.upgradeHolder = upgradeHolder;
         this.number = number;
         this.name = name;
         this.unlocked = unlocked;
         this.requirementDescription = requirementDescription;
         this.rewardDescription = rewardDescription;
+    }
+
+    @Override
+    public UpgradeHolder<T> getUpgradeHolder() {
+
+        return upgradeHolder;
     }
 
     @Override
@@ -63,7 +71,7 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     @Override
     public T getObject() {
 
-        return object;
+        return upgradeHolder.getObject();
     }
 
     @Override

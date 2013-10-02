@@ -2,6 +2,7 @@ package de.raidcraft.rcupgrades.api.level;
 
 import de.raidcraft.api.requirement.Requirement;
 import de.raidcraft.api.reward.Reward;
+import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
 import de.raidcraft.rcupgrades.api.unlockresult.UnlockResult;
 
 import java.util.List;
@@ -15,9 +16,9 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     private List<Reward<T>> rewards;
     private UnlockResult unlockResult;
 
-    public SimpleUpgradeLevel(T object, int number, String name, List<String> requirementDescription, List<String> rewardDescription) {
+    public SimpleUpgradeLevel(UpgradeHolder<T> upgradeHolder, int number, String name, List<String> requirementDescription, List<String> rewardDescription) {
 
-        super(object, number, name, false, requirementDescription, rewardDescription);
+        super(upgradeHolder, number, name, false, requirementDescription, rewardDescription);
         this.unlockResult = new UnlockResult();
     }
 
@@ -70,6 +71,9 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
             for(Reward reward : rewards) {
                 reward.reward(getObject());
             }
+            // save
+            setUnlocked(true);
+            getUpgradeHolder().save();
         }
         return unlockResult;
     }
