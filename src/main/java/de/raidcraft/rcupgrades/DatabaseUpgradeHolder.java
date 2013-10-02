@@ -67,7 +67,7 @@ public class DatabaseUpgradeHolder<T> extends ConfigurationUpgradeHolder<T> {
                         tUpgradeLevel.setNumber(level.getNumber());
                         tUpgradeLevel.setUpgrade(tUpgrade);
                         tUpgradeLevel.setUnlocked(level.isUnlocked());
-                        RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgrade);
+                        RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgradeLevel);
                     }
                     // otherwise update
                     else {
@@ -88,14 +88,14 @@ public class DatabaseUpgradeHolder<T> extends ConfigurationUpgradeHolder<T> {
 
         // load upgrades
         for(Upgrade upgrade : getUpgrades()) {
-            TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class).where().ieq("name", upgrade.getId()).findUnique();
+            TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class).where().eq("holder_id", tUpgradeHolder.getId()).ieq("name", upgrade.getId()).findUnique();
 
             if(tUpgrade == null) continue;
 
             // save levels
             for(UpgradeLevel level : upgrade.getLevels()) {
                 TUpgradeLevel tUpgradeLevel = RaidCraft.getDatabase(RCUpgradesPlugin.class)
-                        .find(TUpgradeLevel.class).where().eq("upgrade_id", upgrade.getId()).eq("number", level.getNumber()).findUnique();
+                        .find(TUpgradeLevel.class).where().eq("upgrade_id", tUpgrade.getId()).eq("number", level.getNumber()).findUnique();
 
                 if(tUpgradeLevel == null) continue;
 
