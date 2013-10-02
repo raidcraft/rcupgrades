@@ -65,4 +65,26 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
 
         return object;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        AbstractUpgradeLevel that = (AbstractUpgradeLevel) o;
+
+        if (number != that.number) return false;
+        if (!name.equals(that.name)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+
+        int result = number;
+        result = 31 * result + name.hashCode();
+        return result;
+    }
 }
