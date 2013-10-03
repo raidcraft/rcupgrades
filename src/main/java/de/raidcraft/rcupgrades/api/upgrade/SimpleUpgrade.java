@@ -37,7 +37,7 @@ public class SimpleUpgrade extends AbstractUpgrade {
         UpgradeLevel upgradeLevel = null;
         for(UpgradeLevel level : levels.values()) {
             if(level.isUnlocked()) continue;
-            if(level.getLevel() < upgradeLevel.getLevel()) upgradeLevel = level;
+            if(upgradeLevel == null || level.getLevel() < upgradeLevel.getLevel()) upgradeLevel = level;
         }
         return upgradeLevel;
     }
@@ -48,7 +48,7 @@ public class SimpleUpgrade extends AbstractUpgrade {
         UpgradeLevel upgradeLevel = null;
         for(UpgradeLevel level : levels.values()) {
             if(!level.isUnlocked()) continue;
-            if(level.getLevel() > upgradeLevel.getLevel()) upgradeLevel = level;
+            if(upgradeLevel == null || level.getLevel() > upgradeLevel.getLevel()) upgradeLevel = level;
         }
         return upgradeLevel;
     }
