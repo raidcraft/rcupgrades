@@ -15,8 +15,9 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     private boolean unlocked;
     private List<String> requirementDescription;
     private List<String> rewardDescription;
+    private int level;
 
-    protected AbstractUpgradeLevel(UpgradeHolder<T> upgradeHolder, String id, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
+    protected AbstractUpgradeLevel(UpgradeHolder<T> upgradeHolder, String id, int level, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
 
         this.upgradeHolder = upgradeHolder;
         this.id = id;
@@ -24,6 +25,7 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
         this.unlocked = unlocked;
         this.requirementDescription = requirementDescription;
         this.rewardDescription = rewardDescription;
+        this.level = level;
     }
 
     @Override
@@ -36,6 +38,12 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     public String getId() {
 
         return id;
+    }
+
+    @Override
+    public int getLevel() {
+
+        return level;
     }
 
     @Override

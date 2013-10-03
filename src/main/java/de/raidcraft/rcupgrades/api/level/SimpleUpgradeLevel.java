@@ -16,9 +16,9 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     private List<Reward<T>> rewards;
     private UnlockResult unlockResult;
 
-    public SimpleUpgradeLevel(UpgradeHolder<T> upgradeHolder, String id, String name, List<String> requirementDescription, List<String> rewardDescription) {
+    public SimpleUpgradeLevel(UpgradeHolder<T> upgradeHolder, String id, int level, String name, List<String> requirementDescription, List<String> rewardDescription) {
 
-        super(upgradeHolder, id, name, false, requirementDescription, rewardDescription);
+        super(upgradeHolder, id, level, name, false, requirementDescription, rewardDescription);
         this.unlockResult = new UnlockResult();
     }
 
