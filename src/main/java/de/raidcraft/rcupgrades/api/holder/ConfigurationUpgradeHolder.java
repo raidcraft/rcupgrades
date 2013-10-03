@@ -19,6 +19,7 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
 
     protected ConfigurationUpgradeHolder(T object, ConfigurationSection config) {
 
+        this.object = object;
         this.name = config.getString("name");
         this.description = config.getString("description");
 
