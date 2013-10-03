@@ -1,9 +1,11 @@
 package de.raidcraft.rcupgrades.api.level;
 
+import de.raidcraft.RaidCraft;
 import de.raidcraft.api.requirement.Requirement;
 import de.raidcraft.api.reward.Reward;
 import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
 import de.raidcraft.rcupgrades.api.unlockresult.UnlockResult;
+import de.raidcraft.rcupgrades.events.UpgradeUnlockEvent;
 
 import java.util.List;
 
@@ -67,6 +69,16 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     public UnlockResult tryToUnlock(T object) {
 
         if(isMeetingAllRequirements(object)) {
+
+            UpgradeUnlockEvent event = new UpgradeUnlockEvent(this, unlockResult);
+            RaidCraft.callEvent(event);
+            if(event.isCancelled()) {
+                unlockResult.setSuccessful(false);
+                unlockResult.setShortReason("Unlock event cancelled");
+                unlockResult.setLongReason("Unlock was cancelled by plugin!");
+                return unlockResult;
+            }
+
             // reward
             for(Reward reward : rewards) {
                 reward.reward(object);
