@@ -17,11 +17,13 @@ public interface Upgrade {
 
     public UpgradeLevel getHighestLockedLevel();
 
+    public UpgradeLevel getHighestUnlockedLevel();
+
     public void setLevels(List<UpgradeLevel> levels);
 
     public void addLevel(UpgradeLevel level);
 
-    public UpgradeLevel getLevel(int level);
+    public UpgradeLevel getLevel(String id);
 
     public List<UpgradeLevel> getLevels();
 }

@@ -1,6 +1,7 @@
 package de.raidcraft.rcupgrades.api.upgrade;
 
 import de.raidcraft.rcupgrades.api.level.UpgradeLevel;
+import de.raidcraft.util.CaseInsensitiveMap;
 
 import java.util.*;
 
@@ -9,7 +10,7 @@ import java.util.*;
  */
 public class SimpleUpgrade extends AbstractUpgrade {
 
-    private SortedMap<Integer, UpgradeLevel> levels = new TreeMap<>();
+    private Map<String, UpgradeLevel> levels = new CaseInsensitiveMap<>();
 
     public SimpleUpgrade(String id, String name, String description) {
 
@@ -34,18 +35,26 @@ public class SimpleUpgrade extends AbstractUpgrade {
     public UpgradeLevel getHighestLockedLevel() {
 
         UpgradeLevel upgradeLevel = null;
-        for(Map.Entry<Integer, UpgradeLevel> entry : levels.entrySet()) {
-            if(!entry.getValue().isUnlocked() && (upgradeLevel == null || upgradeLevel.getId() < entry.getValue().getId())) {
-                upgradeLevel = entry.getValue();
-            }
+        for(UpgradeLevel level : levels.values()) {
+            if(!level.isUnlocked()) upgradeLevel = level;
         }
         return upgradeLevel;
     }
 
     @Override
-    public UpgradeLevel getLevel(int level) {
+    public UpgradeLevel getHighestUnlockedLevel() {
 
-        return levels.get(level);
+        UpgradeLevel upgradeLevel = null;
+        for(UpgradeLevel level : levels.values()) {
+            if(level.isUnlocked()) upgradeLevel = level;
+        }
+        return upgradeLevel;
+    }
+
+    @Override
+    public UpgradeLevel getLevel(String id) {
+
+        return levels.get(id);
     }
 
     @Override
