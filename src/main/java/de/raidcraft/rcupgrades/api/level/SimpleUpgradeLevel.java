@@ -70,7 +70,7 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
 
         if(isMeetingAllRequirements(object)) {
 
-            UpgradeUnlockEvent event = new UpgradeUnlockEvent(this, unlockResult);
+            UpgradeUnlockEvent event = new UpgradeUnlockEvent(this, unlockResult, object);
             RaidCraft.callEvent(event);
             if(event.isCancelled()) {
                 unlockResult.setSuccessful(false);
