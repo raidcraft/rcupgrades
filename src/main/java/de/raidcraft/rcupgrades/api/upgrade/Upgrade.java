@@ -15,7 +15,7 @@ public interface Upgrade {
 
     public String getDescription();
 
-    public UpgradeLevel getHighestLockedLevel();
+    public UpgradeLevel getLowestLockedLevel();
 
     public UpgradeLevel getHighestUnlockedLevel();
 
@@ -24,6 +24,8 @@ public interface Upgrade {
     public void addLevel(UpgradeLevel level);
 
     public UpgradeLevel getLevel(String id);
+
+    public UpgradeLevel getLevel(int level);
 
     public List<UpgradeLevel> getLevels();
 }
