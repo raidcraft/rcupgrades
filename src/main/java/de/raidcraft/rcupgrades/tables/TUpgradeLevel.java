@@ -14,7 +14,7 @@ public class TUpgradeLevel {
 
     @Id
     private int id;
-    private int number;
+    private String identifier;
     private boolean unlocked;
     @ManyToOne
     private TUpgrade upgrade;
@@ -29,14 +29,14 @@ public class TUpgradeLevel {
         this.id = id;
     }
 
-    public int getNumber() {
+    public String getIdentifier() {
 
-        return number;
+        return identifier;
     }
 
-    public void setNumber(int number) {
+    public void setIdentifier(String identifier) {
 
-        this.number = number;
+        this.identifier = identifier;
     }
 
     public boolean isUnlocked() {

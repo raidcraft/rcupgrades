@@ -20,14 +20,14 @@ public class SimpleUpgrade extends AbstractUpgrade {
     public void setLevels(List<UpgradeLevel> levels) {
 
         for(UpgradeLevel upgradeLevel : levels) {
-            this.levels.put(upgradeLevel.getNumber(), upgradeLevel);
+            this.levels.put(upgradeLevel.getId(), upgradeLevel);
         }
     }
 
     @Override
     public void addLevel(UpgradeLevel level) {
 
-        this.levels.put(level.getNumber(), level);
+        this.levels.put(level.getId(), level);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class SimpleUpgrade extends AbstractUpgrade {
 
         UpgradeLevel upgradeLevel = null;
         for(Map.Entry<Integer, UpgradeLevel> entry : levels.entrySet()) {
-            if(!entry.getValue().isUnlocked() && (upgradeLevel == null || upgradeLevel.getNumber() < entry.getValue().getNumber())) {
+            if(!entry.getValue().isUnlocked() && (upgradeLevel == null || upgradeLevel.getId() < entry.getValue().getId())) {
                 upgradeLevel = entry.getValue();
             }
         }

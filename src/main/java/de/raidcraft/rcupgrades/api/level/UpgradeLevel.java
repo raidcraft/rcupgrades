@@ -15,7 +15,7 @@ public interface UpgradeLevel<T> extends RequirementResolver<T> {
 
     public UpgradeHolder<T> getUpgradeHolder();
 
-    public int getNumber();
+    public String getId();
 
     public String getName();
 

@@ -10,16 +10,16 @@ import java.util.List;
 public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
 
     private UpgradeHolder<T> upgradeHolder;
-    private int number;
+    private String id;
     private String name;
     private boolean unlocked;
     private List<String> requirementDescription;
     private List<String> rewardDescription;
 
-    protected AbstractUpgradeLevel(UpgradeHolder<T> upgradeHolder, int number, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
+    protected AbstractUpgradeLevel(UpgradeHolder<T> upgradeHolder, String id, String name, boolean unlocked, List<String> requirementDescription, List<String> rewardDescription) {
 
         this.upgradeHolder = upgradeHolder;
-        this.number = number;
+        this.id = id;
         this.name = name;
         this.unlocked = unlocked;
         this.requirementDescription = requirementDescription;
@@ -33,9 +33,9 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     }
 
     @Override
-    public int getNumber() {
+    public String getId() {
 
-        return number;
+        return id;
     }
 
     @Override
@@ -82,8 +82,7 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
 
         AbstractUpgradeLevel that = (AbstractUpgradeLevel) o;
 
-        if (number != that.number) return false;
-        if (!name.equals(that.name)) return false;
+        if (!id.equals(that.id)) return false;
 
         return true;
     }
@@ -91,8 +90,6 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     @Override
     public int hashCode() {
 
-        int result = number;
-        result = 31 * result + name.hashCode();
-        return result;
+        return id.hashCode();
     }
 }

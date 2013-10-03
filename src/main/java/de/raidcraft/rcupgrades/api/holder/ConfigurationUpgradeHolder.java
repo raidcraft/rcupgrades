@@ -35,18 +35,12 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
             Upgrade upgrade = new SimpleUpgrade(id, name, description);
             if(levels != null) {
                 for(String levelNumber : levels.getKeys(false)) {
-                    int number;
-                    try {
-                        number = Integer.valueOf(levelNumber);
-                    } catch (NumberFormatException e) {
-                        continue;
-                    }
                     ConfigurationSection level = levels.getConfigurationSection(levelNumber);
                     String levelName = level.getString("name");
                     List<String> requirementDescription = level.getStringList("requirement-desc");
                     List<String> rewardDescription = level.getStringList("reward-desc");
 
-                    UpgradeLevel<T> upgradeLevel = new SimpleUpgradeLevel<T>(this, number, levelName, requirementDescription, rewardDescription);
+                    UpgradeLevel<T> upgradeLevel = new SimpleUpgradeLevel<T>(this, levelNumber, levelName, requirementDescription, rewardDescription);
 
                     // requirements
                     ConfigurationSection requirements = level.getConfigurationSection("requirements");
