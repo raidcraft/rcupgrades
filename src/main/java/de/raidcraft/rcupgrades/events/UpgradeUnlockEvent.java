@@ -13,12 +13,14 @@ public class UpgradeUnlockEvent extends Event implements Cancellable {
 
     private UpgradeLevel upgradeLevel;
     private UnlockResult unlockResult;
+    private Object object;
     private boolean cancelled;
 
-    public UpgradeUnlockEvent(UpgradeLevel upgradeLevel, UnlockResult unlockResult) {
+    public UpgradeUnlockEvent(UpgradeLevel upgradeLevel, UnlockResult unlockResult, Object object) {
 
         this.upgradeLevel = upgradeLevel;
         this.unlockResult = unlockResult;
+        this.object = object;
     }
 
     public UpgradeLevel getUpgradeLevel() {
@@ -29,6 +31,11 @@ public class UpgradeUnlockEvent extends Event implements Cancellable {
     public UnlockResult getUnlockResult() {
 
         return unlockResult;
+    }
+
+    public Object getObject() {
+
+        return object;
     }
 
     /*///////////////////////////////////////////////////
