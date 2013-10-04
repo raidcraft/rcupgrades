@@ -21,6 +21,7 @@ public class UpgradeUnlockEvent extends Event implements Cancellable {
         this.upgradeLevel = upgradeLevel;
         this.unlockResult = unlockResult;
         this.object = object;
+        this.cancelled = false;
     }
 
     public UpgradeLevel getUpgradeLevel() {

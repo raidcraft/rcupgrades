@@ -46,7 +46,7 @@ public class DatabaseUpgradeHolder<T> extends ConfigurationUpgradeHolder<T> {
 
             // save upgrades
             for(Upgrade upgrade : getUpgrades()) {
-                TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class).where().ieq("name", upgrade.getId()).findUnique();
+                TUpgrade tUpgrade = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgrade.class).where().eq("holder_id", tUpgradeHolder.getId()).ieq("name", upgrade.getId()).findUnique();
 
                 // save upgrade if not exist
                 if(tUpgrade == null) {
