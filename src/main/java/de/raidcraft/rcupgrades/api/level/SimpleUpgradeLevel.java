@@ -28,12 +28,22 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     public void setRequirements(List<Requirement<T>> requirements) {
 
         this.requirements = requirements;
+
+        for(Requirement req: requirements) {
+            if(req.getDescription() == null || req.getDescription().isEmpty()) continue;
+            addRequirementDescription(req.getDescription());
+        }
     }
 
     @Override
     public void setRewards(List<Reward<T>> rewards) {
 
         this.rewards = rewards;
+
+        for(Reward reward : rewards) {
+            if(reward.getDescription() == null || reward.getDescription().isEmpty()) continue;
+            addRewardDescription(reward.getDescription());
+        }
     }
 
     @Override

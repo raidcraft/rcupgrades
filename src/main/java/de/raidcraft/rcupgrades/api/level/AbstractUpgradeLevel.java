@@ -28,6 +28,16 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
         this.level = level;
     }
 
+    protected void addRequirementDescription(String description) {
+
+        requirementDescription.add(description);
+    }
+
+    protected void addRewardDescription(String description) {
+
+        rewardDescription.add(description);
+    }
+
     @Override
     public UpgradeHolder<T> getUpgradeHolder() {
 
