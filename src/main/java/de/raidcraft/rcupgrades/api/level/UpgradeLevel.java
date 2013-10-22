@@ -21,6 +21,8 @@ public interface UpgradeLevel<T> extends RequirementResolver<T> {
 
     public int getLevel();
 
+    public boolean isStored();
+
     public void setRequirements(List<Requirement<T>> requirements);
 
     public void setRewards(List<Reward<T>> rewards);
