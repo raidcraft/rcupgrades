@@ -1,14 +1,26 @@
 package de.raidcraft.rcupgrades;
 
+import com.google.common.base.Joiner;
 import de.raidcraft.RaidCraft;
 import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
+import de.raidcraft.rcupgrades.api.level.UpgradeLevel;
+import de.raidcraft.rcupgrades.api.upgrade.Upgrade;
+import de.raidcraft.rcupgrades.tables.TLevelInfo;
 import de.raidcraft.rcupgrades.tables.TUpgradeHolder;
+import de.raidcraft.rcupgrades.tables.TUpgradeInfo;
 import org.bukkit.configuration.ConfigurationSection;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author Philip Urban
  */
 public class UpgradeManager {
+
+    private Set<Integer> createdUpgradeInfo = new HashSet<>();
+
 
     /**
      * Load and returns existing UpgradeHolder.
@@ -17,6 +29,7 @@ public class UpgradeManager {
     public <O> UpgradeHolder<O> loadDatabaseUpgradeHolder(O object, ConfigurationSection holderConfig, int id) {
 
         UpgradeHolder<O> upgradeHolder = new DatabaseUpgradeHolder<O>(object, holderConfig, id);
+        createDatabaseUpgradeInfo(upgradeHolder);
         return upgradeHolder;
     }
 
@@ -35,5 +48,40 @@ public class UpgradeManager {
 
         TUpgradeHolder tUpgradeHolder = RaidCraft.getDatabase(RCUpgradesPlugin.class).find(TUpgradeHolder.class, id);
         RaidCraft.getDatabase(RCUpgradesPlugin.class).delete(tUpgradeHolder);
+    }
+
+    private <O> void createDatabaseUpgradeInfo(UpgradeHolder<O> upgradeHolder) {
+
+        if(createdUpgradeInfo.contains(upgradeHolder.getId())) return;
+        createdUpgradeInfo.add(upgradeHolder.getId());
+
+        // delete existing
+        List<TUpgradeInfo> tUpgradeInfos = RaidCraft.getDatabase(RCUpgradesPlugin.class)
+                .find(TUpgradeInfo.class).where().eq("holder_id", String.valueOf(upgradeHolder.getId())).findList();
+        RaidCraft.getDatabase(RCUpgradesPlugin.class).delete(tUpgradeInfos);
+
+        // create new
+        for(Upgrade upgrade : upgradeHolder.getUpgrades()) {
+            TUpgradeInfo tUpgradeInfo = new TUpgradeInfo();
+            tUpgradeInfo.setHolderId(String.valueOf(upgradeHolder.getId()));
+            tUpgradeInfo.setHolderName(upgradeHolder.getName());
+            tUpgradeInfo.setDescription(upgrade.getDescription());
+            tUpgradeInfo.setName(upgrade.getName());
+            RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgradeInfo);
+
+            // save level info
+            for(UpgradeLevel level : upgrade.getLevels()) {
+
+                TLevelInfo tLevelInfo = new TLevelInfo();
+                tLevelInfo.setName(level.getName());
+                tLevelInfo.setIdentifier(level.getId());
+                tLevelInfo.setLevelNumber(level.getLevel());
+                tLevelInfo.setUpgradeInfo(tUpgradeInfo);
+                tLevelInfo.setRequirementDescription(Joiner.on("|").join(level.getRequirementDescription()));
+                tLevelInfo.setRewardDescription(Joiner.on("|").join(level.getRewardDescription()));
+                RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tLevelInfo);
+            }
+        }
+
     }
 }
