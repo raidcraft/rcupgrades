@@ -8,6 +8,7 @@ import de.raidcraft.rcupgrades.api.upgrade.Upgrade;
 import de.raidcraft.rcupgrades.tables.TLevelInfo;
 import de.raidcraft.rcupgrades.tables.TUpgradeHolder;
 import de.raidcraft.rcupgrades.tables.TUpgradeInfo;
+import de.raidcraft.util.StringUtils;
 import org.bukkit.configuration.ConfigurationSection;
 
 import java.util.HashSet;
@@ -19,7 +20,7 @@ import java.util.Set;
  */
 public class UpgradeManager {
 
-    private Set<Integer> createdUpgradeInfo = new HashSet<>();
+    private Set<String> createdUpgradeInfo = new HashSet<>();
 
 
     /**
@@ -52,18 +53,18 @@ public class UpgradeManager {
 
     private <O> void createDatabaseUpgradeInfo(UpgradeHolder<O> upgradeHolder) {
 
-        if(createdUpgradeInfo.contains(upgradeHolder.getId())) return;
-        createdUpgradeInfo.add(upgradeHolder.getId());
+        if(createdUpgradeInfo.contains(StringUtils.formatName(upgradeHolder.getName()))) return;
+        createdUpgradeInfo.add(StringUtils.formatName(upgradeHolder.getName()));
 
         // delete existing
         List<TUpgradeInfo> tUpgradeInfos = RaidCraft.getDatabase(RCUpgradesPlugin.class)
-                .find(TUpgradeInfo.class).where().eq("holder_id", String.valueOf(upgradeHolder.getId())).findList();
+                .find(TUpgradeInfo.class).where().ieq("holder_id", StringUtils.formatName(upgradeHolder.getName())).findList();
         RaidCraft.getDatabase(RCUpgradesPlugin.class).delete(tUpgradeInfos);
 
         // create new
         for(Upgrade upgrade : upgradeHolder.getUpgrades()) {
             TUpgradeInfo tUpgradeInfo = new TUpgradeInfo();
-            tUpgradeInfo.setHolderId(String.valueOf(upgradeHolder.getId()));
+            tUpgradeInfo.setHolderId(StringUtils.formatName(upgradeHolder.getName()));
             tUpgradeInfo.setHolderName(upgradeHolder.getName());
             tUpgradeInfo.setDescription(upgrade.getDescription());
             tUpgradeInfo.setName(upgrade.getName());
