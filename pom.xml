@@ -25,7 +25,7 @@
     <name>RCUpgrades</name>
 
     <scm>
-        <developerConnection>scm:git:ssh://git@git.raid-craft.de:22109/rcupgrades.git</developerConnection>
+        <developerConnection>scm:git:ssh://git@git.raid-craft.de:22109/raid-craft-de/rcupgrades.git</developerConnection>
     </scm>
 
     <parent>
@@ -40,12 +40,4 @@
             <url>http://nexus.raid-craft.de/content/groups/public/</url>
         </repository>
     </repositories>
-
-    <dependencies>
-        <dependency>
-            <groupId>de.raidcraft</groupId>
-            <artifactId>raidcraft-api</artifactId>
-            <version>${rc.version}</version>
-        </dependency>
-    </dependencies>
 </project>
