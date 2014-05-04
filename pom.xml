@@ -21,12 +21,13 @@
     <groupId>de.raidcraft</groupId>
     <artifactId>upgrades</artifactId>
     <packaging>jar</packaging>
-    <version>1.1.6-SNAPSHOT</version>
+    <version>1.1.6</version>
     <name>RCUpgrades</name>
 
     <scm>
         <developerConnection>scm:git:ssh://git@git.raid-craft.de:22109/raid-craft-de/rcupgrades.git</developerConnection>
-    </scm>
+      <tag>upgrades-1.1.6</tag>
+  </scm>
 
     <parent>
         <groupId>de.raidcraft</groupId>
