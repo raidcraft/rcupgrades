@@ -1,5 +1,8 @@
 package de.raidcraft.rcupgrades.tables;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -8,6 +11,8 @@ import javax.persistence.Table;
 /**
  * @author Philip Urban
  */
+@Getter
+@Setter
 @Entity
 @Table(name = "rcupgrades_levels")
 public class TUpgradeLevel {
@@ -18,44 +23,4 @@ public class TUpgradeLevel {
     private boolean unlocked;
     @ManyToOne
     private TUpgrade upgrade;
-
-    public int getId() {
-
-        return id;
-    }
-
-    public void setId(int id) {
-
-        this.id = id;
-    }
-
-    public String getIdentifier() {
-
-        return identifier;
-    }
-
-    public void setIdentifier(String identifier) {
-
-        this.identifier = identifier;
-    }
-
-    public boolean isUnlocked() {
-
-        return unlocked;
-    }
-
-    public void setUnlocked(boolean unlocked) {
-
-        this.unlocked = unlocked;
-    }
-
-    public TUpgrade getUpgrade() {
-
-        return upgrade;
-    }
-
-    public void setUpgrade(TUpgrade upgrade) {
-
-        this.upgrade = upgrade;
-    }
 }
