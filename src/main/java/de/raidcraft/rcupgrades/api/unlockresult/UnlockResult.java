@@ -9,7 +9,8 @@ public class UnlockResult {
     private String shortReason;
     private String longReason;
 
-    public UnlockResult() {}
+    public UnlockResult() {
+    }
 
     public UnlockResult(boolean successful, String shortReason, String longReason) {
 

@@ -24,9 +24,9 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
         this.description = config.getString("description");
 
         ConfigurationSection upgradesSection = config.getConfigurationSection("upgrades");
-        if(upgradesSection == null) return;
+        if (upgradesSection == null) return;
 
-        for(String key : upgradesSection.getKeys(false)) {
+        for (String key : upgradesSection.getKeys(false)) {
             ConfigurationSection upgradeSection = upgradesSection.getConfigurationSection(key);
             String id = key;
             String name = upgradeSection.getString("name");
@@ -34,8 +34,8 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
 
             ConfigurationSection levels = upgradeSection.getConfigurationSection("level");
             Upgrade upgrade = new SimpleUpgrade(id, name, description);
-            if(levels != null) {
-                for(String levelIdentifier : levels.getKeys(false)) {
+            if (levels != null) {
+                for (String levelIdentifier : levels.getKeys(false)) {
                     ConfigurationSection level = levels.getConfigurationSection(levelIdentifier);
                     String levelName = level.getString("name");
                     boolean stored = level.getBoolean("stored", true);

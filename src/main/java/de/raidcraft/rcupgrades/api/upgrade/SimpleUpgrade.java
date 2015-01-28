@@ -3,7 +3,9 @@ package de.raidcraft.rcupgrades.api.upgrade;
 import de.raidcraft.rcupgrades.api.level.UpgradeLevel;
 import de.raidcraft.util.CaseInsensitiveMap;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Philip Urban
@@ -20,7 +22,7 @@ public class SimpleUpgrade extends AbstractUpgrade {
     @Override
     public void setLevels(List<UpgradeLevel> levels) {
 
-        for(UpgradeLevel upgradeLevel : levels) {
+        for (UpgradeLevel upgradeLevel : levels) {
             this.levels.put(upgradeLevel.getId(), upgradeLevel);
         }
     }
@@ -35,9 +37,9 @@ public class SimpleUpgrade extends AbstractUpgrade {
     public UpgradeLevel getLowestLockedLevel() {
 
         UpgradeLevel upgradeLevel = null;
-        for(UpgradeLevel level : levels.values()) {
-            if(level.isUnlocked()) continue;
-            if(upgradeLevel == null || level.getLevel() < upgradeLevel.getLevel()) upgradeLevel = level;
+        for (UpgradeLevel level : levels.values()) {
+            if (level.isUnlocked()) continue;
+            if (upgradeLevel == null || level.getLevel() < upgradeLevel.getLevel()) upgradeLevel = level;
         }
         return upgradeLevel;
     }
@@ -46,9 +48,9 @@ public class SimpleUpgrade extends AbstractUpgrade {
     public UpgradeLevel getHighestUnlockedLevel() {
 
         UpgradeLevel upgradeLevel = null;
-        for(UpgradeLevel level : levels.values()) {
-            if(!level.isUnlocked()) continue;
-            if(upgradeLevel == null || level.getLevel() > upgradeLevel.getLevel()) upgradeLevel = level;
+        for (UpgradeLevel level : levels.values()) {
+            if (!level.isUnlocked()) continue;
+            if (upgradeLevel == null || level.getLevel() > upgradeLevel.getLevel()) upgradeLevel = level;
         }
         return upgradeLevel;
     }
@@ -62,8 +64,8 @@ public class SimpleUpgrade extends AbstractUpgrade {
     @Override
     public UpgradeLevel getLevel(int level) {
 
-        for(UpgradeLevel upgradeLevel : levels.values()) {
-            if(upgradeLevel.getLevel() == level) return upgradeLevel;
+        for (UpgradeLevel upgradeLevel : levels.values()) {
+            if (upgradeLevel.getLevel() == level) return upgradeLevel;
         }
         return null;
     }
@@ -71,7 +73,7 @@ public class SimpleUpgrade extends AbstractUpgrade {
     @Override
     public List<UpgradeLevel> getLevels() {
 
-        if(levels.values() == null || levels.values().size() == 0) {
+        if (levels.values() == null || levels.values().size() == 0) {
             return new ArrayList<>();
         }
         return new ArrayList<>(levels.values());

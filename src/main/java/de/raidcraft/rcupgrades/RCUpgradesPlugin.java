@@ -1,7 +1,11 @@
 package de.raidcraft.rcupgrades;
 
 import de.raidcraft.api.BasePlugin;
-import de.raidcraft.rcupgrades.tables.*;
+import de.raidcraft.rcupgrades.tables.TLevelInfo;
+import de.raidcraft.rcupgrades.tables.TUpgrade;
+import de.raidcraft.rcupgrades.tables.TUpgradeHolder;
+import de.raidcraft.rcupgrades.tables.TUpgradeInfo;
+import de.raidcraft.rcupgrades.tables.TUpgradeLevel;
 
 import java.util.ArrayList;
 import java.util.List;

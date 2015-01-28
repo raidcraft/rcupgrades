@@ -25,7 +25,6 @@ public class UpgradeManager {
 
     /**
      * Load and returns existing UpgradeHolder.
-     *
      */
     public <O> UpgradeHolder<O> loadDatabaseUpgradeHolder(O object, ConfigurationSection holderConfig, int id) {
 
@@ -36,7 +35,6 @@ public class UpgradeManager {
 
     /**
      * Creates a new UpgradeHolder from given holder configuration and stores them in the database.
-     *
      */
     public <O> UpgradeHolder createDatabaseUpgradeHolder(O object, ConfigurationSection holderConfig) {
 
@@ -53,7 +51,7 @@ public class UpgradeManager {
 
     private <O> void createDatabaseUpgradeInfo(UpgradeHolder<O> upgradeHolder) {
 
-        if(createdUpgradeInfo.contains(StringUtils.formatName(upgradeHolder.getName()))) return;
+        if (createdUpgradeInfo.contains(StringUtils.formatName(upgradeHolder.getName()))) return;
         createdUpgradeInfo.add(StringUtils.formatName(upgradeHolder.getName()));
 
         // delete existing
@@ -62,7 +60,7 @@ public class UpgradeManager {
         RaidCraft.getDatabase(RCUpgradesPlugin.class).delete(tUpgradeInfos);
 
         // create new
-        for(Upgrade upgrade : upgradeHolder.getUpgrades()) {
+        for (Upgrade upgrade : upgradeHolder.getUpgrades()) {
             TUpgradeInfo tUpgradeInfo = new TUpgradeInfo();
             tUpgradeInfo.setHolderId(StringUtils.formatName(upgradeHolder.getName()));
             tUpgradeInfo.setHolderName(upgradeHolder.getName());
@@ -71,7 +69,7 @@ public class UpgradeManager {
             RaidCraft.getDatabase(RCUpgradesPlugin.class).save(tUpgradeInfo);
 
             // save level info
-            for(UpgradeLevel level : upgrade.getLevels()) {
+            for (UpgradeLevel level : upgrade.getLevels()) {
 
                 TLevelInfo tLevelInfo = new TLevelInfo();
                 tLevelInfo.setName(level.getName());

@@ -29,8 +29,8 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
 
         this.requirements = requirements;
 
-        for(Requirement req: requirements) {
-            if(req.getDescription() == null || req.getDescription().isEmpty()) continue;
+        for (Requirement req : requirements) {
+            if (req.getDescription() == null || req.getDescription().isEmpty()) continue;
             addRequirementDescription(req.getDescription());
         }
     }
@@ -40,8 +40,8 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
 
         this.rewards = rewards;
 
-        for(Reward reward : rewards) {
-            if(reward.getDescription() == null || reward.getDescription().isEmpty()) continue;
+        for (Reward reward : rewards) {
+            if (reward.getDescription() == null || reward.getDescription().isEmpty()) continue;
             addRewardDescription(reward.getDescription());
         }
     }
@@ -55,9 +55,9 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     @Override
     public boolean isMeetingAllRequirements(T object) {
 
-        for(Requirement<T> requirement : requirements) {
+        for (Requirement<T> requirement : requirements) {
 
-            if(!requirement.isMet(object)) {
+            if (!requirement.isMet(object)) {
                 unlockResult.setSuccessful(false);
                 unlockResult.setShortReason(requirement.getShortReason());
                 unlockResult.setLongReason(requirement.getLongReason());
@@ -78,11 +78,11 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     @Override
     public UnlockResult tryToUnlock(T object) {
 
-        if(isMeetingAllRequirements(object)) {
+        if (isMeetingAllRequirements(object)) {
 
             UpgradeUnlockEvent event = new UpgradeUnlockEvent(this, unlockResult, object);
             RaidCraft.callEvent(event);
-            if(event.isCancelled()) {
+            if (event.isCancelled()) {
                 unlockResult.setSuccessful(false);
                 unlockResult.setShortReason("Unlock event cancelled");
                 unlockResult.setLongReason("Unlock was cancelled by plugin!");
@@ -90,7 +90,7 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
             }
 
             // reward
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 reward.reward(object);
             }
             // save
