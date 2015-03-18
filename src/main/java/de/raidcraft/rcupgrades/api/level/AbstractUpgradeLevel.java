@@ -95,12 +95,6 @@ public abstract class AbstractUpgradeLevel<T> implements UpgradeLevel<T> {
     }
 
     @Override
-    public T getObject() {
-
-        return upgradeHolder.getObject();
-    }
-
-    @Override
     public boolean equals(Object o) {
 
         if (this == o) return true;

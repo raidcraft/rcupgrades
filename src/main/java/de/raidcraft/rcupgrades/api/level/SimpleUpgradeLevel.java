@@ -1,12 +1,14 @@
 package de.raidcraft.rcupgrades.api.level;
 
 import de.raidcraft.RaidCraft;
-import de.raidcraft.api.requirement.Requirement;
+import de.raidcraft.api.action.requirement.Requirement;
 import de.raidcraft.api.reward.Reward;
 import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
 import de.raidcraft.rcupgrades.api.unlockresult.UnlockResult;
 import de.raidcraft.rcupgrades.events.UpgradeUnlockEvent;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -44,12 +46,6 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
             if(reward.getDescription() == null || reward.getDescription().isEmpty()) continue;
             addRewardDescription(reward.getDescription());
         }
-    }
-
-    @Override
-    public List<Requirement<T>> getRequirements() {
-
-        return requirements;
     }
 
     @Override
@@ -98,5 +94,11 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
             getUpgradeHolder().save();
         }
         return unlockResult;
+    }
+
+    @Override
+    public Collection<Requirement<?>> getRequirements() {
+
+        return new ArrayList<>(requirements);
     }
 }

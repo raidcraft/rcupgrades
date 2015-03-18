@@ -1,7 +1,7 @@
 package de.raidcraft.rcupgrades.api.level;
 
-import de.raidcraft.api.requirement.Requirement;
-import de.raidcraft.api.requirement.RequirementResolver;
+import de.raidcraft.api.action.requirement.Requirement;
+import de.raidcraft.api.action.requirement.RequirementHolder;
 import de.raidcraft.api.reward.Reward;
 import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
 import de.raidcraft.rcupgrades.api.unlockresult.UnlockResult;
@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface UpgradeLevel<T> extends RequirementResolver<T> {
+public interface UpgradeLevel<T> extends RequirementHolder<T> {
 
     public UpgradeHolder<T> getUpgradeHolder();
 
