@@ -9,17 +9,17 @@ import java.util.List;
  */
 public interface UpgradeHolder<T> {
 
-    public int getId();
+    int getId();
 
-    public String getName();
+    String getName();
 
-    public String getDescription();
+    String getDescription();
 
-    public T getObject();
+    T getObject();
 
-    public Upgrade getUpgrade(String id);
+    Upgrade getUpgrade(String id);
 
-    public List<Upgrade> getUpgrades();
+    List<Upgrade> getUpgrades();
 
-    public void save();
+    void save();
 }

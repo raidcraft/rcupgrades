@@ -13,27 +13,27 @@ import java.util.List;
  */
 public interface UpgradeLevel<T> extends RequirementResolver<T> {
 
-    public UpgradeHolder<T> getUpgradeHolder();
+    UpgradeHolder<T> getUpgradeHolder();
 
-    public String getId();
+    String getId();
 
-    public String getName();
+    String getName();
 
-    public int getLevel();
+    int getLevel();
 
-    public boolean isStored();
+    boolean isStored();
 
-    public void setRequirements(List<Requirement<T>> requirements);
+    void setRequirements(List<Requirement<T>> requirements);
 
-    public void setRewards(List<Reward<T>> rewards);
+    void setRewards(List<Reward<T>> rewards);
 
-    public List<String> getRequirementDescription();
+    List<String> getRequirementDescription();
 
-    public List<String> getRewardDescription();
+    List<String> getRewardDescription();
 
-    public boolean isUnlocked();
+    boolean isUnlocked();
 
-    public void setUnlocked(boolean unlocked);
+    void setUnlocked(boolean unlocked);
 
-    public UnlockResult tryToUnlock(T object);
+    UnlockResult tryToUnlock(T object);
 }

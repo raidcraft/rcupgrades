@@ -9,23 +9,23 @@ import java.util.List;
  */
 public interface Upgrade {
 
-    public String getId();
+    String getId();
 
-    public String getName();
+    String getName();
 
-    public String getDescription();
+    String getDescription();
 
-    public UpgradeLevel getLowestLockedLevel();
+    UpgradeLevel getLowestLockedLevel();
 
-    public UpgradeLevel getHighestUnlockedLevel();
+    UpgradeLevel getHighestUnlockedLevel();
 
-    public void setLevels(List<UpgradeLevel> levels);
+    void setLevels(List<UpgradeLevel> levels);
 
-    public void addLevel(UpgradeLevel level);
+    void addLevel(UpgradeLevel level);
 
-    public UpgradeLevel getLevel(String id);
+    UpgradeLevel getLevel(String id);
 
-    public UpgradeLevel getLevel(int level);
+    UpgradeLevel getLevel(int level);
 
-    public List<UpgradeLevel> getLevels();
+    List<UpgradeLevel> getLevels();
 }
