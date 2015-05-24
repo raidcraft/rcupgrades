@@ -1,5 +1,6 @@
 package de.raidcraft.rcupgrades.api.holder;
 
+import de.raidcraft.api.action.requirement.RequirementHolder;
 import de.raidcraft.rcupgrades.api.upgrade.Upgrade;
 
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface UpgradeHolder<T> {
+public interface UpgradeHolder<T> extends RequirementHolder {
 
     int getId();
 

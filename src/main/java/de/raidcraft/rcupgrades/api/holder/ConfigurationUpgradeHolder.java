@@ -1,5 +1,6 @@
 package de.raidcraft.rcupgrades.api.holder;
 
+import de.raidcraft.api.action.ActionAPI;
 import de.raidcraft.api.requirement.Requirement;
 import de.raidcraft.api.requirement.RequirementManager;
 import de.raidcraft.api.reward.Reward;
@@ -47,6 +48,8 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
 
                     // requirements
                     ConfigurationSection requirements = level.getConfigurationSection("requirements");
+                    List<de.raidcraft.api.action.requirement.Requirement<?>> list = ActionAPI.createRequirements(getName(), requirements);
+                    getRequirements();
                     List<Requirement<T>> requirementList = RequirementManager.createRequirements(upgradeLevel, requirements);
                     upgradeLevel.setRequirements(requirementList);
 
