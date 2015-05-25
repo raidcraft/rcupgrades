@@ -33,8 +33,8 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
         this.requirements = requirements;
 
         for(Requirement req: requirements) {
-            if(!req.getDescription(null).isPresent()) continue;
-            addRequirementDescription((String)req.getDescription(null).get());
+            if(!req.getDescription(getUpgradeHolder()).isPresent()) continue;
+            addRequirementDescription((String)req.getDescription(getUpgradeHolder()).get());
         }
     }
 
