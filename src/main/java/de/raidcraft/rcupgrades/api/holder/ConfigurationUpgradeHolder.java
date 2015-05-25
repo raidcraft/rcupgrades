@@ -1,8 +1,7 @@
 package de.raidcraft.rcupgrades.api.holder;
 
 import de.raidcraft.api.action.ActionAPI;
-import de.raidcraft.api.requirement.Requirement;
-import de.raidcraft.api.requirement.RequirementManager;
+import de.raidcraft.api.action.requirement.Requirement;
 import de.raidcraft.api.reward.Reward;
 import de.raidcraft.api.reward.RewardManager;
 import de.raidcraft.rcupgrades.api.level.SimpleUpgradeLevel;
@@ -11,6 +10,7 @@ import de.raidcraft.rcupgrades.api.upgrade.SimpleUpgrade;
 import de.raidcraft.rcupgrades.api.upgrade.Upgrade;
 import org.bukkit.configuration.ConfigurationSection;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -48,9 +48,7 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
 
                     // requirements
                     ConfigurationSection requirements = level.getConfigurationSection("requirements");
-                    List<de.raidcraft.api.action.requirement.Requirement<?>> list = ActionAPI.createRequirements(getName(), requirements);
-                    getRequirements();
-                    List<Requirement<T>> requirementList = RequirementManager.createRequirements(upgradeLevel, requirements);
+                    List<Requirement<T>> requirementList = ActionAPI.createRequirements(upgradeLevel.getId(), requirements, (Class<T>)object.getClass());
                     upgradeLevel.setRequirements(requirementList);
 
                     // rewards

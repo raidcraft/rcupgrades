@@ -1,20 +1,23 @@
 package de.raidcraft.rcupgrades.api.level;
 
 import de.raidcraft.RaidCraft;
-import de.raidcraft.api.requirement.Requirement;
+import de.raidcraft.api.action.requirement.ReasonableRequirement;
+import de.raidcraft.api.action.requirement.Requirement;
 import de.raidcraft.api.reward.Reward;
 import de.raidcraft.rcupgrades.api.holder.UpgradeHolder;
 import de.raidcraft.rcupgrades.api.unlockresult.UnlockResult;
 import de.raidcraft.rcupgrades.events.UpgradeUnlockEvent;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.function.Predicate;
 
 /**
  * @author Philip Urban
  */
 public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
 
-    private List<Requirement<T>> requirements;
+    private Collection<Requirement<T>> requirements;
     private List<Reward<T>> rewards;
     private UnlockResult unlockResult;
 
@@ -25,15 +28,17 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     }
 
     @Override
-    public void setRequirements(List<Requirement<T>> requirements) {
+    public void setRequirements(Collection<Requirement<T>> requirements) {
 
         this.requirements = requirements;
 
         for(Requirement req: requirements) {
-            if(req.getDescription() == null || req.getDescription().isEmpty()) continue;
-            addRequirementDescription(req.getDescription());
+            if(!req.getDescription(null).isPresent()) continue;
+            addRequirementDescription((String)req.getDescription(null).get());
         }
     }
+
+
 
     @Override
     public void setRewards(List<Reward<T>> rewards) {
@@ -47,20 +52,14 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     }
 
     @Override
-    public List<Requirement<T>> getRequirements() {
+    public <T> boolean isMeetingAllRequirements(T object) {
 
-        return requirements;
-    }
+        for(Requirement requirement : requirements) {
 
-    @Override
-    public boolean isMeetingAllRequirements(T object) {
-
-        for(Requirement<T> requirement : requirements) {
-
-            if(!requirement.isMet(object)) {
+            if(!requirement.test(object)) {
                 unlockResult.setSuccessful(false);
-                unlockResult.setShortReason(requirement.getShortReason());
-                unlockResult.setLongReason(requirement.getLongReason());
+                if(requirement instanceof ReasonableRequirement)
+                    unlockResult.setLongReason(((ReasonableRequirement) requirement).getReason(object));
                 return false;
             }
         }
@@ -70,27 +69,20 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
     }
 
     @Override
-    public String getResolveReason(T object) {
-
-        return unlockResult.getLongReason();
-    }
-
-    @Override
     public UnlockResult tryToUnlock(T object) {
 
-        if(isMeetingAllRequirements(object)) {
+        if (isMeetingAllRequirements(object)) {
 
             UpgradeUnlockEvent event = new UpgradeUnlockEvent(this, unlockResult, object);
             RaidCraft.callEvent(event);
-            if(event.isCancelled()) {
+            if (event.isCancelled()) {
                 unlockResult.setSuccessful(false);
-                unlockResult.setShortReason("Unlock event cancelled");
                 unlockResult.setLongReason("Unlock was cancelled by plugin!");
                 return unlockResult;
             }
 
             // reward
-            for(Reward reward : rewards) {
+            for (Reward reward : rewards) {
                 reward.reward(object);
             }
             // save
@@ -98,5 +90,20 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
             getUpgradeHolder().save();
         }
         return unlockResult;
+    }
+
+    @Override
+    public Collection<Requirement<?>> getRequirements() {
+        return null;
+    }
+
+    @Override
+    public <T> Collection<Requirement<T>> getRequirements(Class<?> entityClazz) {
+        return null;
+    }
+
+    @Override
+    public <T> Collection<Requirement<T>> getRequirements(Class<T> entityClazz, Predicate<? super Requirement<T>> filter) {
+        return null;
     }
 }

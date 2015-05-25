@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface UpgradeHolder<T> extends RequirementHolder {
+public interface UpgradeHolder<T> {
 
     int getId();
 
