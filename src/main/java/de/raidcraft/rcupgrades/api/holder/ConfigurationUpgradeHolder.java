@@ -46,7 +46,7 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
                     List<String> requirementDescription = level.getStringList("requirement-desc");
                     List<String> rewardDescription = level.getStringList("reward-desc");
 
-                    UpgradeLevel<T> upgradeLevel = new SimpleUpgradeLevel<T>(this, levelIdentifier, levelNumber, levelName, stored, requirementDescription, rewardDescription);
+                    UpgradeLevel<T> upgradeLevel = new SimpleUpgradeLevel(this, levelIdentifier, levelNumber, levelName, stored, requirementDescription, rewardDescription);
 
                     // requirements
                     ConfigurationSection requirements = level.getConfigurationSection("requirements");
