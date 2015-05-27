@@ -50,7 +50,7 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
                     // requirements
                     ConfigurationSection requirements = level.getConfigurationSection("requirements");
                     List<Requirement<T>> requirementList = ActionAPI.createRequirements(upgradeLevel.getId(), requirements, getType());
-                    RaidCraft.LOGGER.info("[RCUpgrades] Es wurden " + requirementList.size() + " Requirements für das Upgrade-Level " + upgradeLevel.getName() + " geladen!");
+//                    RaidCraft.LOGGER.info("[RCUpgrades] Es wurden " + requirementList.size() + " Requirements für das Upgrade-Level " + upgradeLevel.getName() + " geladen!");
                     upgradeLevel.setRequirements(requirementList);
 
                     // rewards
