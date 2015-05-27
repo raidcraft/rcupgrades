@@ -19,8 +19,9 @@ public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
     protected Class<T> clazz;
     protected Map<String, Upgrade> upgrades = new CaseInsensitiveMap<>();
 
-    public AbstractUpgradeHolder(Class<T> clazz) {
+    public AbstractUpgradeHolder(T object, Class<T> clazz) {
         this.clazz = clazz;
+        this.object = object;
     }
 
     @Override
