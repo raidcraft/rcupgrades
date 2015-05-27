@@ -23,4 +23,6 @@ public interface UpgradeHolder<T> {
     List<Upgrade> getUpgrades();
 
     void save();
+
+    Class<T> getType();
 }

@@ -16,7 +16,12 @@ public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
     protected String name;
     protected String description;
     protected T object;
+    protected Class<T> clazz;
     protected Map<String, Upgrade> upgrades = new CaseInsensitiveMap<>();
+
+    public AbstractUpgradeHolder(Class<T> clazz) {
+        this.clazz = clazz;
+    }
 
     @Override
     public int getId() {
@@ -54,5 +59,15 @@ public abstract class AbstractUpgradeHolder<T> implements UpgradeHolder<T> {
             return new ArrayList<>();
         }
         return new ArrayList<>(upgrades.values());
+    }
+
+    @Override
+    public Class<T> getType() {
+        return clazz;
+    }
+
+    public void setType(Class<T> clazz)
+    {
+        this.clazz = clazz;
     }
 }

@@ -51,7 +51,6 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
         }
     }
 
-    @Override
     public <T> boolean isMeetingAllRequirements(T object) {
 
         for(Requirement requirement : requirements) {
@@ -90,20 +89,5 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
             getUpgradeHolder().save();
         }
         return unlockResult;
-    }
-
-    @Override
-    public Collection<Requirement<?>> getRequirements() {
-        return null;
-    }
-
-    @Override
-    public <T> Collection<Requirement<T>> getRequirements(Class<?> entityClazz) {
-        return null;
-    }
-
-    @Override
-    public <T> Collection<Requirement<T>> getRequirements(Class<T> entityClazz, Predicate<? super Requirement<T>> filter) {
-        return null;
     }
 }

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author Philip Urban
  */
-public interface UpgradeLevel<T> extends RequirementHolder {
+public interface UpgradeLevel<T> {
 
     UpgradeHolder<T> getUpgradeHolder();
 

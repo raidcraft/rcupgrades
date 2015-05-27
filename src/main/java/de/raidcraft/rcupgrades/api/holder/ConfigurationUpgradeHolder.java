@@ -19,8 +19,9 @@ import java.util.List;
  */
 public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolder<T> {
 
-    protected ConfigurationUpgradeHolder(T object, ConfigurationSection config) {
+    protected ConfigurationUpgradeHolder(T object, ConfigurationSection config, Class<T> clazz) {
 
+        super(clazz);
         this.object = object;
         this.name = config.getString("name");
         this.description = config.getString("description");
@@ -49,7 +50,7 @@ public abstract class ConfigurationUpgradeHolder<T> extends AbstractUpgradeHolde
 
                     // requirements
                     ConfigurationSection requirements = level.getConfigurationSection("requirements");
-                    List<Requirement<T>> requirementList = ActionAPI.createRequirements(upgradeLevel.getId(), requirements, (Class<T>)object.getClass());
+                    List<Requirement<T>> requirementList = ActionAPI.createRequirements(upgradeLevel.getId(), requirements, getType());
                     RaidCraft.LOGGER.info("[RCUpgrades] Es wurden " + requirementList.size() + " Requirements für das Upgrade-Level " + upgradeLevel.getName() + " geladen!");
                     upgradeLevel.setRequirements(requirementList);
 
