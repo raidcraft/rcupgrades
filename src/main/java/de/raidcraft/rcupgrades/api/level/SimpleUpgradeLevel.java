@@ -85,7 +85,7 @@ public class SimpleUpgradeLevel<T> extends AbstractUpgradeLevel<T> {
                 reward.reward(object);
             }
             // save
-            setUnlocked(true);
+            if(isStored()) setUnlocked(true);
             getUpgradeHolder().save();
         }
         return unlockResult;
